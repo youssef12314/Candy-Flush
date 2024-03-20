@@ -18,7 +18,6 @@ function initializeBoard(){
             let candy = candies[randomIndex];
             row.push(candy)
         }
-
         board.push(row)
     }
 
@@ -35,10 +34,9 @@ function initializeBoard(){
         }
         gameBoardElement.appendChild(rowElement);
     }
-
-    //calling detectmatch function
-let matches = detectMatches();
-console.log(matches);
+   //calling detectmatch function
+    let matches = detectMatches();
+    console.log(matches);
 }
 
 
@@ -75,7 +73,6 @@ function detectMatches(){
         }
    }
    return matches;
-
 }
 
 window.onload=function(){
