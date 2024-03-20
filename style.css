@@ -1,0 +1,36 @@
+#game-board-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(9, 60px);
+    grid-template-columns: repeat(9, 60px);
+    grid: 5px;
+   position: fixed;
+}
+
+
+#game-title{
+    text-align: cent;
+    height: 80vh;
+    font-size: 5vh;
+    font-family: sans-serif;
+    color: rgb(112, 35, 48);
+    position: fixed;
+
+}
+
+.cell{
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+}
