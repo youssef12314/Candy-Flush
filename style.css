@@ -34,3 +34,8 @@
     line-height: 60px;
     font-size: 20px;
 }
+
+.candy {
+    width: 60px; /* Adjust this value as needed */
+    height: auto; /* Adjust this value as needed */
+}
