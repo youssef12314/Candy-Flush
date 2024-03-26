@@ -6,6 +6,8 @@ let board = [];
 let rows = 9;
 let columns = 9;
 let score = 0;
+let selectedCandy = null;
+let startX, startY;
 
 function initializeBoard() {
     let gameBoardElement = document.getElementById("game-board");
@@ -21,8 +23,13 @@ function initializeBoard() {
             let randomIndex = Math.floor(Math.random() * candyImages.length);
             let candyImg = document.createElement("img");
             candyImg.classList.add("candy");
+            candyImg.setAttribute('draggable', true);
             candyImg.src = "Candies/" + candyImages[randomIndex];
             candyImg.setAttribute("data-candy", candyImages[randomIndex]); // stored candy type as data attribute
+            candyImg.setAttribute("data-row", i);
+            candyImg.setAttribute("data-column", j);
+            candyImg.addEventListener('dragstart', dragStart)
+            candyImg.addEventListener('dragend', dragEnd);
             row.push(candyImg);
         }
         board.push(row);
@@ -35,6 +42,11 @@ function initializeBoard() {
         for (let j = 0; j < columns; j++) {
             let cellElement = document.createElement("div");
             cellElement.classList.add("cell");
+
+            cellElement.addEventListener('dragover', dragOver);
+            cellElement.addEventListener('dragenter', dragEnter);
+            cellElement.addEventListener('drop', dragDrop);
+            
             cellElement.appendChild(board[i][j]);
             rowElement.appendChild(cellElement);
         }
@@ -44,6 +56,41 @@ function initializeBoard() {
     // Call detectmatch function
     let matches = detectMatches();
     console.log(matches);
+}
+
+//drag candies
+function dragStart(event){
+    selectedCandy = event.target;
+    startX = event.clientX;
+    startY = event.clientY;
+}
+
+function dragEnd(event){
+    selectedCandy = null;
+}
+
+function dragOver(event){
+    event.preventDefault();
+}
+
+function dragEnter(event){
+    event.preventDefault();
+}
+
+function dragDrop(event){
+    event.preventDefault();
+    let hoveredCandy = event.target;
+    let hoveredRow = hoveredCandy.getAttribute("data-row");
+    let hoveredColumn = hoveredCandy.getAttribute("data-column");
+    let selectedRow = selectedCandy.getAttribute("data-row")
+    let selectedColumn = selectedCandy.getAttribute("data-column")
+
+    // Swap candies only if they are adjacent
+    if (Math.abs(hoveredRow - selectedRow) + Math.abs(hoveredColumn - selectedColumn) === 1) {
+        let tempSrc = hoveredCandy.src;
+        hoveredCandy.src = selectedCandy.src;
+        selectedCandy.src = tempSrc;
+    }
 }
 
 function detectMatches() {
