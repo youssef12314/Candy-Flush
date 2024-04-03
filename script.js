@@ -77,13 +77,13 @@ function dragEnter(event){
     event.preventDefault();
 }
 
-function dragDrop(event){
+function dragDrop(event) {
     event.preventDefault();
     let hoveredCandy = event.target;
     let hoveredRow = hoveredCandy.getAttribute("data-row");
     let hoveredColumn = hoveredCandy.getAttribute("data-column");
-    let selectedRow = selectedCandy.getAttribute("data-row")
-    let selectedColumn = selectedCandy.getAttribute("data-column")
+    let selectedRow = selectedCandy.getAttribute("data-row");
+    let selectedColumn = selectedCandy.getAttribute("data-column");
 
     // Swap candies only if they are adjacent
     if (Math.abs(hoveredRow - selectedRow) + Math.abs(hoveredColumn - selectedColumn) === 1) {
@@ -131,14 +131,15 @@ function detectMatches() {
         }
     }
 
-    // Remove the matched candy from the board
+    // Remove the matched candy from the board at the beginning
     for (let candy of candiesToRemove) {
         board[candy.row][candy.column].src = ""; 
         board[candy.row][candy.column].setAttribute("data-candy", ""); 
     }
 
+        
     return matches;
-}
+    }
 
 window.onload = function () {
     initializeBoard();
