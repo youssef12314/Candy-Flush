@@ -110,6 +110,8 @@ function detectMatches() {
                 candiesToRemove.push({ row: i, column: j + 1 });
                 candiesToRemove.push({ row: i, column: j + 2 });
                 console.log("Horizontal match found at row " + i + ", column " + j);
+                score += 4;
+
             }
         }
     }
@@ -127,6 +129,8 @@ function detectMatches() {
                 candiesToRemove.push({ row: i + 1, column: j });
                 candiesToRemove.push({ row: i + 2, column: j });
                 console.log("Vertical match found at row " + i + ", column " + j);
+                score += 4;
+
             }
         }
     }
@@ -137,7 +141,9 @@ function detectMatches() {
         board[candy.row][candy.column].setAttribute("data-candy", ""); 
     }
 
-        
+    //Score display
+    document.getElementById("game-score").textContent = "Score: " + score;
+            
     return matches;
     }
 

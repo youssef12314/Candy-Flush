@@ -25,6 +25,16 @@
 
 }
 
+#game-score{
+    text-align: cent;
+    height: 95vh;
+    font-size: 5vh;
+    font-family: sans-serif;
+    color: rgb(112, 35, 48);
+    position: fixed;
+
+}
+
 .cell{
     width: 60px;
     height: 60px;
