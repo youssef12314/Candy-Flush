@@ -23,16 +23,14 @@ let score = 0;
 let selectedCandy = null;
 let startX, startY;
 
+//initialization of board
 function initializeBoard() {
   let gameBoardElement = document.getElementById("game-board");
 
-  // Clear previous content
   gameBoardElement.innerHTML = "";
 
-  // Loop through each row
   for (let i = 0; i < rows; i++) {
     let row = [];
-    // Loop through each column in the current row
     for (let j = 0; j < columns; j++) {
       let randomIndex = Math.floor(Math.random() * candyImages.length);
       let candyImg = document.createElement("img");
@@ -112,11 +110,11 @@ function dragDrop(event) {
     selectedCandy.setAttribute(
       "data-candy",
       tempSrc.substring(tempSrc.lastIndexOf("/") + 1)
-    ); // Extract candy name from src
+    ); 
   }
   detectMatches();
 }
-
+//detection for matches
 function detectMatches() {
   let matches = [];
   let candiesToRemove = [];
